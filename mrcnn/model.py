@@ -244,7 +244,7 @@ def clip_boxes_graph(boxes, window):
     return clipped
 
 
-class ProposalLayer(tensorflow.keras.Layer):
+class ProposalLayer(tensorflow.keras.layers):
     """Receives anchor scores and selects a subset to pass as proposals
     to the second stage. Filtering is done based on anchor scores and
     non-max suppression to remove overlaps. It also applies bounding
@@ -331,7 +331,7 @@ def log2_graph(x):
     return tensorflow.log(x) / tensorflow.log(2.0)
 
 
-class PyramidROIAlign(tensorflow.keras.Layer):
+class PyramidROIAlign(tensorflow.keras.layers):
     """Implements ROI Pooling on multiple levels of the feature pyramid.
     Params:
     - pool_shape: [pool_height, pool_width] of the output pooled regions. Usually [7, 7]
@@ -603,7 +603,7 @@ def detection_targets_graph(proposals, gt_class_ids, gt_boxes, gt_masks, config)
     return rois, roi_gt_class_ids, deltas, masks
 
 
-class DetectionTargetLayer(tensorflow.keras.Layer):
+class DetectionTargetLayer(tensorflow.keras.layers):
     """Subsamples proposals and generates target box refinement, class_ids,
     and masks for each.
     Inputs:
@@ -758,7 +758,7 @@ def refine_detections_graph(rois, probs, deltas, window, config):
     return detections
 
 
-class DetectionLayer(tensorflow.keras.Layer):
+class DetectionLayer(tensorflow.keras.layers):
     """Takes classified proposal boxes and their bounding box deltas and
     returns the final detection boxes.
     Returns:
